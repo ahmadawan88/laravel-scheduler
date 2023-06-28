@@ -19,10 +19,6 @@ class SlotHelper {
         if($break) {
             return ['status' => false, 'case' => 'isWithinBreak', 'data' => $break];
         }
-        // $existingBooking = $service->isWithinExistingBooking($date, $startTime, $endTime);
-        // if($existingBooking) { 
-        //     return ['status' => false, 'case' => 'isWithinExistingBooking', 'data' => $existingBooking];
-        // }
         $existingBookingsCount = $service->getExistingBookingsCount($date, $startTime, $endTime);
         $hasCapacity = self::hasCapacity($service->capacity, $existingBookingsCount, $requiredBookings);
         if($hasCapacity) {
@@ -117,9 +113,4 @@ class SlotHelper {
         return $newTime;
     }
 
-    // public static function filterAvailableSlots(array $slots) {
-    //     return array_filter($slots, function ($item, $k) { 
-    //         return $item['isAvailable'] == true;
-    //     }, ARRAY_FILTER_USE_BOTH);
-    // }
 }

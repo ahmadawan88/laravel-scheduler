@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\createBookingRequest;
 use App\Http\Services\BookingService;
-use App\Http\Services\ServiceHelpers\SlotHelper;
-use App\Http\Services\SlotService;
-use App\Models\Booking;
 use App\Models\Service;
-use App\Models\User;
 use Carbon\Carbon;
 
 class BookingsController extends Controller
@@ -16,11 +12,6 @@ class BookingsController extends Controller
     public function create(createBookingRequest $request, BookingService $bookingService) {
         $service = Service::find($request->input("service_id"));
         $date = Carbon::parse($request->input('date'))->startOfDay();
-        // $startTime = Carbon::createFromFormat('H:i', $request->start_time);
-        // $endTime = Carbon::createFromFormat('H:i', $request->end_time);
-        
-        // $startTime = $date->copy()->setTimeFrom($request->start_time);  //Carbon::createFromFormat('H:i', $request->start_time);
-        // $endTime = $date->copy()->setTimeFrom($request->end_time); // Carbon::createFromFormat('H:i', $request->end_time);
         $startTime  = $date->copy()->setTimeFrom($request->start_time);
         $endTime = $date->copy()->setTimeFrom($request->end_time);
 

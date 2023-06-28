@@ -103,22 +103,6 @@ class Service extends Model
 
         return false;
     }
-    // public function isWithinExistingBooking(Carbon $date, Carbon $startTime, Carbon $endTime) {
-    //     return $this->bookings()->where('service_id', $this->id)
-    //     ->whereDate('date', $date)
-    //     ->where(function ($query) use ($startTime, $endTime) {
-    //         $query->where(function ($query) use ($startTime, $endTime) {
-    //             $query->whereTime('start_time', '<', $endTime)
-    //                 ->whereTime('end_time', '>', $startTime);
-    //         })->orWhere(function ($query) use ($startTime, $endTime) {
-    //             $query->whereTime('start_time', '>=', $startTime)
-    //                 ->whereTime('start_time', '<', $endTime);
-    //         })->orWhere(function ($query) use ($startTime, $endTime) {
-    //             $query->whereTime('end_time', '>', $startTime)
-    //                 ->whereTime('end_time', '<=', $endTime);
-    //         });
-    //     })->first();
-    // }
     public function getExistingBookingsCount($date, $startTime, $endTime) {
         return $this->bookings()->whereDate('date', $date)->whereTime('start_time', $startTime)->count();
     }
